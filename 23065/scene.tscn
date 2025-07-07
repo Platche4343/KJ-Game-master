@@ -1,0 +1,157 @@
+[gd_scene load_steps=19 format=3 uid="uid://be41ru4j3v24"]
+
+[ext_resource type="Script" path="res://Global.gd" id="1_bjjmn"]
+[ext_resource type="PackedScene" uid="uid://covmf03pu1sll" path="res://Rack.tscn" id="1_kb4ok"]
+[ext_resource type="PackedScene" uid="uid://bs0gxavncsid4" path="res://portal.tscn" id="3_frlg1"]
+[ext_resource type="Texture2D" uid="uid://d3y1p7mp87x3k" path="res://icon.svg" id="4_2g3dk"]
+[ext_resource type="Script" path="res://checkpoint_1.gd" id="4_82hxs"]
+[ext_resource type="Texture2D" uid="uid://bf3sinx5w3lhi" path="res://biden.png" id="5_wajhc"]
+[ext_resource type="Script" path="res://bluedohit.gd" id="6_nxvjb"]
+[ext_resource type="Texture2D" uid="uid://b6y1sjgkluwgw" path="res://blue man thing guy not translparent.PNG" id="6_xqiw5"]
+[ext_resource type="Script" path="res://bluegethit.gd" id="8_skwb6"]
+[ext_resource type="Script" path="res://blue_guy.gd" id="9_px7uk"]
+[ext_resource type="Script" path="res://win!.gd" id="10_k4v32"]
+[ext_resource type="Texture2D" uid="uid://d22a4bee1vv3x" path="res://rick face.PNG" id="11_iu3vp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_el0ot"]
+size = Vector2(129, 129)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wrixj"]
+radius = 996.425
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2r77g"]
+size = Vector2(118.77, 135.872)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5edx7"]
+size = Vector2(101, 230)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n1jes"]
+size = Vector2(111, 180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iymyx"]
+size = Vector2(98, 224)
+
+[node name="Scene" type="Node2D"]
+position = Vector2(60, 0)
+script = ExtResource("1_bjjmn")
+
+[node name="KillZone" parent="." instance=ExtResource("3_frlg1")]
+position = Vector2(30, 1053)
+scale = Vector2(92.7701, 4.25519)
+
+[node name="Rack" parent="." instance=ExtResource("1_kb4ok")]
+unique_name_in_owner = true
+position = Vector2(82, -417)
+
+[node name="platform" type="Sprite2D" parent="."]
+position = Vector2(75.4988, 123.5)
+scale = Vector2(12.2891, 2.57031)
+texture = ExtResource("4_2g3dk")
+metadata/_edit_group_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="platform"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="platform/StaticBody2D"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_el0ot")
+
+[node name="platform2" type="Sprite2D" parent="."]
+position = Vector2(1344.25, 124)
+scale = Vector2(7.57422, 2.57031)
+texture = ExtResource("4_2g3dk")
+metadata/_edit_group_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="platform2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="platform2/StaticBody2D"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_el0ot")
+
+[node name="platform4" type="Sprite2D" parent="."]
+position = Vector2(2934, 109)
+scale = Vector2(8.99219, 2.57031)
+texture = ExtResource("4_2g3dk")
+metadata/_edit_group_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="platform4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="platform4/StaticBody2D"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_el0ot")
+
+[node name="platform3" type="Sprite2D" parent="."]
+position = Vector2(842.501, -152.5)
+scale = Vector2(1.0375, 1.62991)
+texture = ExtResource("4_2g3dk")
+metadata/_edit_group_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="platform3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="platform3/StaticBody2D"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_el0ot")
+
+[node name="checkpoint1" type="Area2D" parent="."]
+position = Vector2(-27, 53)
+script = ExtResource("4_82hxs")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="checkpoint1"]
+position = Vector2(1773, -286)
+scale = Vector2(0.116466, 0.145436)
+texture = ExtResource("5_wajhc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="checkpoint1"]
+position = Vector2(1773, -286)
+scale = Vector2(0.116466, 0.145436)
+shape = SubResource("CircleShape2D_wrixj")
+
+[node name="win!" type="Area2D" parent="."]
+position = Vector2(3387, -235)
+scale = Vector2(2.17227, 2.21533)
+script = ExtResource("10_k4v32")
+
+[node name="RickFace" type="Sprite2D" parent="win!"]
+texture = ExtResource("11_iu3vp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="win!"]
+position = Vector2(-0.920654, -0.225723)
+shape = SubResource("RectangleShape2D_2r77g")
+
+[node name="Blue Guy" type="CharacterBody2D" parent="."]
+position = Vector2(-466, -219)
+script = ExtResource("9_px7uk")
+metadata/_edit_group_ = true
+
+[node name="BlueManThingGuyNotTranslparent" type="Sprite2D" parent="Blue Guy"]
+position = Vector2(1.99994, 1.52588e-05)
+scale = Vector2(0.258909, 0.389491)
+texture = ExtResource("6_xqiw5")
+
+[node name="physicsbody" type="CollisionShape2D" parent="Blue Guy"]
+position = Vector2(7.5, 0)
+shape = SubResource("RectangleShape2D_5edx7")
+debug_color = Color(0.965271, 0, 0.487712, 0.42)
+
+[node name="attackbox" type="Area2D" parent="Blue Guy"]
+unique_name_in_owner = true
+position = Vector2(1, 0)
+script = ExtResource("6_nxvjb")
+
+[node name="hitthembox" type="CollisionShape2D" parent="Blue Guy/attackbox"]
+position = Vector2(57.5, 23)
+shape = SubResource("RectangleShape2D_n1jes")
+
+[node name="gethit" type="Area2D" parent="Blue Guy/attackbox"]
+unique_name_in_owner = true
+script = ExtResource("8_skwb6")
+
+[node name="gethitbox" type="CollisionShape2D" parent="Blue Guy/attackbox/gethit"]
+position = Vector2(4, 1)
+shape = SubResource("RectangleShape2D_iymyx")
+
+[connection signal="body_entered" from="checkpoint1" to="checkpoint1" method="_on_body_entered"]
+[connection signal="body_entered" from="win!" to="win!" method="_on_body_entered"]
+[connection signal="body_entered" from="Blue Guy/attackbox" to="Blue Guy/attackbox" method="_on_body_entered"]
+[connection signal="body_exited" from="Blue Guy/attackbox" to="Blue Guy/attackbox" method="_on_body_exited"]
+[connection signal="body_entered" from="Blue Guy/attackbox/gethit" to="Blue Guy/attackbox/gethit" method="_on_body_entered"]
