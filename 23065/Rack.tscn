@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://covmf03pu1sll"]
+[gd_scene load_steps=20 format=3 uid="uid://covmf03pu1sll"]
 
 [ext_resource type="Script" path="res://Rack.gd" id="1_84gjw"]
 [ext_resource type="Texture2D" uid="uid://diesjdc04r8kx" path="res://Rick_mewing-1.webp" id="2_i8jd8"]
@@ -6,9 +6,63 @@
 [ext_resource type="Script" path="res://ui.gd" id="4_xwb4n"]
 [ext_resource type="Script" path="res://punch_hitbox.gd" id="5_0vvmb"]
 [ext_resource type="Script" path="res://punch_area.gd" id="5_udoqa"]
+[ext_resource type="Texture2D" uid="uid://ux1ljk4nfbjc" path="res://kjanimations/walk/walk-1.png" id="7_15hbe"]
+[ext_resource type="Texture2D" uid="uid://wjdeluen6bwb" path="res://kjanimations/idle/idle-1.png" id="7_56bkr"]
+[ext_resource type="Texture2D" uid="uid://cj654aspkis7w" path="res://kjanimations/walk/walk-2.png" id="8_0kj1b"]
+[ext_resource type="Texture2D" uid="uid://bef4ndmcu3uyd" path="res://kjanimations/idle/idle-2.png" id="8_5romf"]
+[ext_resource type="Texture2D" uid="uid://dvlx3k21hpisc" path="res://kjanimations/walk/walk-3.png" id="9_u4bcn"]
+[ext_resource type="Texture2D" uid="uid://bqtqgu8wmu538" path="res://kjanimations/walk/walk-4.png" id="10_eh5xf"]
+[ext_resource type="Texture2D" uid="uid://bpit76ngk0nd" path="res://kjanimations/walk/walk-5.png" id="11_trani"]
+[ext_resource type="Texture2D" uid="uid://bepqdfdcvbhmf" path="res://kjanimations/walk/walk-6.png" id="12_51i0a"]
+[ext_resource type="Texture2D" uid="uid://cx6hwi06sj4i4" path="res://kjanimations/walk/walk-7.png" id="13_lfd4y"]
+[ext_resource type="Texture2D" uid="uid://bsliwsue12ige" path="res://kjanimations/walk/walk-8.png" id="14_qakhn"]
+[ext_resource type="Script" path="res://animation.gd" id="17_d3mu1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_715n0"]
 size = Vector2(153, 178)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6hnwk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_56bkr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5romf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_15hbe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_0kj1b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_u4bcn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_eh5xf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_trani")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_51i0a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_lfd4y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_qakhn")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 7.0
+}]
 
 [node name="Rack" type="CharacterBody2D"]
 position = Vector2(582, 241)
@@ -36,10 +90,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.368
 anchor_bottom = 0.218
-offset_left = 175.0
-offset_top = -82.0
-offset_right = 895.064
-offset_bottom = 151.736
+offset_left = 243.0
+offset_top = -63.0
+offset_right = 963.064
+offset_bottom = 170.736
 text = "aaaa"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -58,6 +112,17 @@ unique_name_in_owner = true
 position = Vector2(-25, 81)
 scale = Vector2(5.6, 8.3)
 polygon = PackedVector2Array(-7.85714, -11.4458, -11.7857, -8.55421, -14.6429, -6.98795, -15.1786, -4.81927, -14.8214, -3.49397, -14.2857, -2.40964, -14.4643, -1.56626, -14.6429, -0.602409, -14.4643, 0.48193, -14.1071, 1.56627, -13.5714, 2.53012, -12.1429, 4.33735, -8.75, 6.14458, -9.46429, 7.10844, -9.82143, 8.43373, -9.82143, 10, 11.0714, 10, 10.8929, 9.15663, 13.0357, 5.90362, 14.4643, 3.85542, 15, 2.6506, 15.1786, 1.3253, 15.3571, 0.240967, 15.1786, -1.20482, 14.6429, -3.25301, 14.1071, -4.09638, 14.1071, -5.42168, 13.2143, -6.74699, 12.5, -7.46988, 11.25, -8.19277, 10.8929, -9.39759, 10.3571, -10.1205, 9.28571, -10.9639, 7.67857, -11.3253, 5.53571, -11.2048, 4.64285, -11.5663, 3.21429, -11.9277, 1.25, -12.2892, -0.89286, -12.5301, -1.60714, -13.1325, -2.85714, -17.8313, -4.28571, -19.3976, -7.5, -19.8795, -10.7143, -18.9157, -11.0714, -16.3855)
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, 37)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_6hnwk")
+animation = &"idle"
+frame_progress = 0.560107
+flip_h = true
+script = ExtResource("17_d3mu1")
 
 [connection signal="area_entered" from="Punch area" to="Punch area" method="_on_area_entered"]
 [connection signal="area_exited" from="Punch area" to="Punch area" method="_on_area_exited"]

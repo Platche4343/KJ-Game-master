@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://be41ru4j3v24"]
+[gd_scene load_steps=23 format=3 uid="uid://be41ru4j3v24"]
 
 [ext_resource type="Script" path="res://Global.gd" id="1_bjjmn"]
 [ext_resource type="PackedScene" uid="uid://covmf03pu1sll" path="res://Rack.tscn" id="1_kb4ok"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" path="res://blue_guy.gd" id="9_px7uk"]
 [ext_resource type="Script" path="res://win!.gd" id="10_k4v32"]
 [ext_resource type="Texture2D" uid="uid://d22a4bee1vv3x" path="res://rick face.PNG" id="11_iu3vp"]
+[ext_resource type="Script" path="res://detectright.gd" id="13_qnl5u"]
+[ext_resource type="Script" path="res://detectleft.gd" id="14_12vxd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_el0ot"]
 size = Vector2(129, 129)
@@ -31,6 +33,12 @@ size = Vector2(111, 180)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iymyx"]
 size = Vector2(98, 224)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_al1b5"]
+size = Vector2(571, 535)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vdgv8"]
+size = Vector2(270, 330)
+
 [node name="Scene" type="Node2D"]
 position = Vector2(60, 0)
 script = ExtResource("1_bjjmn")
@@ -41,7 +49,7 @@ scale = Vector2(92.7701, 4.25519)
 
 [node name="Rack" parent="." instance=ExtResource("1_kb4ok")]
 unique_name_in_owner = true
-position = Vector2(82, -417)
+position = Vector2(349, -553)
 
 [node name="platform" type="Sprite2D" parent="."]
 position = Vector2(75.4988, 123.5)
@@ -119,23 +127,23 @@ position = Vector2(-0.920654, -0.225723)
 shape = SubResource("RectangleShape2D_2r77g")
 
 [node name="Blue Guy" type="CharacterBody2D" parent="."]
-position = Vector2(-466, -219)
+position = Vector2(-610, -204)
 script = ExtResource("9_px7uk")
 metadata/_edit_group_ = true
 
 [node name="BlueManThingGuyNotTranslparent" type="Sprite2D" parent="Blue Guy"]
-position = Vector2(1.99994, 1.52588e-05)
+position = Vector2(2, -13)
 scale = Vector2(0.258909, 0.389491)
 texture = ExtResource("6_xqiw5")
 
 [node name="physicsbody" type="CollisionShape2D" parent="Blue Guy"]
-position = Vector2(7.5, 0)
+position = Vector2(6, -14)
 shape = SubResource("RectangleShape2D_5edx7")
 debug_color = Color(0.965271, 0, 0.487712, 0.42)
 
 [node name="attackbox" type="Area2D" parent="Blue Guy"]
 unique_name_in_owner = true
-position = Vector2(1, 0)
+position = Vector2(1, -12)
 script = ExtResource("6_nxvjb")
 
 [node name="hitthembox" type="CollisionShape2D" parent="Blue Guy/attackbox"]
@@ -150,8 +158,52 @@ script = ExtResource("8_skwb6")
 position = Vector2(4, 1)
 shape = SubResource("RectangleShape2D_iymyx")
 
+[node name="detectright" type="Area2D" parent="Blue Guy"]
+unique_name_in_owner = true
+position = Vector2(132, -4)
+script = ExtResource("13_qnl5u")
+
+[node name="detectrighthb" type="CollisionShape2D" parent="Blue Guy/detectright"]
+position = Vector2(269, -1)
+shape = SubResource("RectangleShape2D_al1b5")
+debug_color = Color(0.567014, 0.549587, 0.265252, 0.42)
+
+[node name="detectleft" type="Area2D" parent="Blue Guy"]
+unique_name_in_owner = true
+script = ExtResource("14_12vxd")
+
+[node name="detectlefthb" type="CollisionShape2D" parent="Blue Guy/detectleft"]
+position = Vector2(-380, -2)
+shape = SubResource("RectangleShape2D_al1b5")
+debug_color = Color(0.567014, 0.549587, 0.265252, 0.42)
+
+[node name="Amazing man" type="CharacterBody2D" parent="."]
+position = Vector2(1314, -635)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Amazing man"]
+position = Vector2(3, -24)
+shape = SubResource("RectangleShape2D_vdgv8")
+
+[node name="BlueManThingGuyNotTranslparent" type="Sprite2D" parent="Amazing man"]
+position = Vector2(6.63147, -25.1588)
+scale = Vector2(0.424638, 0.531881)
+texture = ExtResource("6_xqiw5")
+
+[node name="detectright" type="Area2D" parent="Amazing man"]
+position = Vector2(6.63147, -25.1588)
+scale = Vector2(0.424638, 0.531881)
+
+[node name="detectleft" type="Area2D" parent="Amazing man"]
+position = Vector2(6.63147, -25.1588)
+scale = Vector2(0.424638, 0.531881)
+
 [connection signal="body_entered" from="checkpoint1" to="checkpoint1" method="_on_body_entered"]
 [connection signal="body_entered" from="win!" to="win!" method="_on_body_entered"]
 [connection signal="body_entered" from="Blue Guy/attackbox" to="Blue Guy/attackbox" method="_on_body_entered"]
 [connection signal="body_exited" from="Blue Guy/attackbox" to="Blue Guy/attackbox" method="_on_body_exited"]
 [connection signal="body_entered" from="Blue Guy/attackbox/gethit" to="Blue Guy/attackbox/gethit" method="_on_body_entered"]
+[connection signal="body_entered" from="Blue Guy/detectright" to="Blue Guy/detectright" method="_on_body_entered"]
+[connection signal="body_exited" from="Blue Guy/detectright" to="Blue Guy/detectright" method="_on_body_exited"]
+[connection signal="body_entered" from="Blue Guy/detectleft" to="Blue Guy/detectleft" method="_on_body_entered"]
+[connection signal="body_exited" from="Blue Guy/detectleft" to="Blue Guy/detectleft" method="_on_body_exited"]

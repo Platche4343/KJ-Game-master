@@ -5,6 +5,8 @@ extends CharacterBody2D
 @export var jump_speed = -1000
 @export var gravity = 2000
 
+var rackonfloor
+
 var dashcooldown = false
 
 var sprinting = false
@@ -64,7 +66,10 @@ func _physics_process(delta):
 	if sprinting and Input.is_action_just_pressed("Space") and dashcooldown == false:
 		velocity.x = Input.get_axis("walk_left", "walk_right") * dash
 		Cooldown(2)
-		
+	if is_on_floor() == true:
+		rackonfloor = true
+	elif is_on_floor() == false:
+		rackonfloor = false
 	move_and_slide()
 	
 	if Input.is_action_pressed("jump") and is_on_floor():
@@ -101,9 +106,9 @@ func attack():
 		await get_tree().create_timer(0.1).timeout
 		attacking = false
 		m1cooldown = true
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.1).timeout
 		m1cooldown = false
-
+		
 func  _process(_delta):
 	attack()
 	comboreset()

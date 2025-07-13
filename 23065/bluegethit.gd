@@ -12,8 +12,15 @@ func _on_body_entered(body):
 
 func _on_special_area_entered(by_area: Area2D) -> void:
 	last_notifier = by_area
-	print("I entered ", by_area.name)
-	Bluehealth -= 25
+	#print("I entered ", by_area.name)
+	if Rack.combo == 1:
+		Bluehealth -=10
+	elif Rack.combo == 2:
+		Bluehealth -= 10
+	elif Rack.combo == 3:
+		Bluehealth -= 10
+	elif Rack.combo == 4:
+		Bluehealth -= 20
 	print("BLUE", Bluehealth)
 func _process(_delta):
 	if Bluehealth <= 0:

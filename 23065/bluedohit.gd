@@ -24,7 +24,7 @@ func _process(_delta):
 	
 	if Touching == true and oncooldown == false:
 		Global.Health -= 25
-		print(Global.Health)
+		#print(Global.Health)
 		oncooldown = true
 		await get_tree().create_timer(0.6).timeout
 		oncooldown = false
