@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://be41ru4j3v24"]
+[gd_scene load_steps=29 format=3 uid="uid://be41ru4j3v24"]
 
 [ext_resource type="Script" path="res://Global.gd" id="1_bjjmn"]
 [ext_resource type="PackedScene" uid="uid://covmf03pu1sll" path="res://Rack.tscn" id="1_kb4ok"]
@@ -14,6 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://d22a4bee1vv3x" path="res://rick face.PNG" id="11_iu3vp"]
 [ext_resource type="Script" path="res://detectright.gd" id="13_qnl5u"]
 [ext_resource type="Script" path="res://detectleft.gd" id="14_12vxd"]
+[ext_resource type="Script" path="res://detectright_a.gd" id="15_5xr3r"]
+[ext_resource type="Script" path="res://amazing_man.gd" id="15_j3c38"]
+[ext_resource type="Script" path="res://detectleft_a.gd" id="16_a5tac"]
+[ext_resource type="Script" path="res://amazinggethit.gd" id="16_mitbe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_el0ot"]
 size = Vector2(129, 129)
@@ -36,8 +40,14 @@ size = Vector2(98, 224)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_al1b5"]
 size = Vector2(571, 535)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0fvmy"]
+size = Vector2(272, 333)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vdgv8"]
 size = Vector2(270, 330)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ie247"]
+size = Vector2(1820.37, 609.159)
 
 [node name="Scene" type="Node2D"]
 position = Vector2(60, 0)
@@ -142,7 +152,6 @@ shape = SubResource("RectangleShape2D_5edx7")
 debug_color = Color(0.965271, 0, 0.487712, 0.42)
 
 [node name="attackbox" type="Area2D" parent="Blue Guy"]
-unique_name_in_owner = true
 position = Vector2(1, -12)
 script = ExtResource("6_nxvjb")
 
@@ -151,7 +160,6 @@ position = Vector2(57.5, 23)
 shape = SubResource("RectangleShape2D_n1jes")
 
 [node name="gethit" type="Area2D" parent="Blue Guy/attackbox"]
-unique_name_in_owner = true
 script = ExtResource("8_skwb6")
 
 [node name="gethitbox" type="CollisionShape2D" parent="Blue Guy/attackbox/gethit"]
@@ -159,7 +167,6 @@ position = Vector2(4, 1)
 shape = SubResource("RectangleShape2D_iymyx")
 
 [node name="detectright" type="Area2D" parent="Blue Guy"]
-unique_name_in_owner = true
 position = Vector2(132, -4)
 script = ExtResource("13_qnl5u")
 
@@ -169,7 +176,6 @@ shape = SubResource("RectangleShape2D_al1b5")
 debug_color = Color(0.567014, 0.549587, 0.265252, 0.42)
 
 [node name="detectleft" type="Area2D" parent="Blue Guy"]
-unique_name_in_owner = true
 script = ExtResource("14_12vxd")
 
 [node name="detectlefthb" type="CollisionShape2D" parent="Blue Guy/detectleft"]
@@ -179,7 +185,15 @@ debug_color = Color(0.567014, 0.549587, 0.265252, 0.42)
 
 [node name="Amazing man" type="CharacterBody2D" parent="."]
 position = Vector2(1314, -635)
+script = ExtResource("15_j3c38")
 metadata/_edit_group_ = true
+
+[node name="GetHit" type="Area2D" parent="Amazing man"]
+script = ExtResource("16_mitbe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Amazing man/GetHit"]
+position = Vector2(3, -20.5)
+shape = SubResource("RectangleShape2D_0fvmy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Amazing man"]
 position = Vector2(3, -24)
@@ -190,13 +204,25 @@ position = Vector2(6.63147, -25.1588)
 scale = Vector2(0.424638, 0.531881)
 texture = ExtResource("6_xqiw5")
 
-[node name="detectright" type="Area2D" parent="Amazing man"]
+[node name="detectrightA" type="Area2D" parent="Amazing man"]
 position = Vector2(6.63147, -25.1588)
 scale = Vector2(0.424638, 0.531881)
+script = ExtResource("15_5xr3r")
 
-[node name="detectleft" type="Area2D" parent="Amazing man"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Amazing man/detectrightA"]
+position = Vector2(899.28, -3.46179)
+shape = SubResource("RectangleShape2D_ie247")
+debug_color = Color(0.780392, 0.439216, 0, 0.419608)
+
+[node name="detectleftA" type="Area2D" parent="Amazing man"]
 position = Vector2(6.63147, -25.1588)
 scale = Vector2(0.424638, 0.531881)
+script = ExtResource("16_a5tac")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Amazing man/detectleftA"]
+position = Vector2(-924.626, -3.46168)
+shape = SubResource("RectangleShape2D_ie247")
+debug_color = Color(0.780392, 0.439216, 0, 0.419608)
 
 [connection signal="body_entered" from="checkpoint1" to="checkpoint1" method="_on_body_entered"]
 [connection signal="body_entered" from="win!" to="win!" method="_on_body_entered"]
@@ -207,3 +233,4 @@ scale = Vector2(0.424638, 0.531881)
 [connection signal="body_exited" from="Blue Guy/detectright" to="Blue Guy/detectright" method="_on_body_exited"]
 [connection signal="body_entered" from="Blue Guy/detectleft" to="Blue Guy/detectleft" method="_on_body_entered"]
 [connection signal="body_exited" from="Blue Guy/detectleft" to="Blue Guy/detectleft" method="_on_body_exited"]
+[connection signal="body_entered" from="Amazing man/GetHit" to="Amazing man/GetHit" method="_on_body_entered"]
